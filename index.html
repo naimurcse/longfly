@@ -102,7 +102,7 @@
                     </div>
                 </div>
             </div>
-            <button class="btn-style">Book Now</button>
+            <button id="bookRequest" class="btn-style">Book Now</button>
         </div>
 
         <div class="booking-content">
@@ -153,6 +153,13 @@
                 const totalPassengers = parseInt(passengersInput.value);
                 return totalPassengers;
             }
+
+            // Show Alert Message of Payable Amount
+            document.getElementById('bookRequest').addEventListener('click', function () {
+                const grandTotalAmount = document.getElementById('grandAmount').innerText;
+                alert("Total Payable Amount : $" + grandTotalAmount);
+
+            })
         </script>
         <!--Script End-->
 </body>
