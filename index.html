@@ -112,6 +112,19 @@
                 voluptatibus quam</p>
         </div>
         </section>
+
+        <section id="acknowledgement-section">
+            <div class="acknowledgement-content">
+                <h3>Your Booking Information: </h3>
+                <span class="border"></span>
+                <p>First Class Passengers : <span id='showTotalFirstClassPassengers'>0</span></p>
+                <p>Economy Class Passengers : <span id='showTotalEconomyClassPassengers'>0</span></p>
+                <span class="border"></span>
+                <h4>Total Payable Amount : $<span id='showTotalPayableAmount'>0</span></h4>
+                <a id="conformBooking" class="btn-custom" href="#">Conform</a>
+            </div>
+        </section>
+
     </main>
 
     <!--Script Start-->
@@ -128,6 +141,8 @@
             }
             passengersInput.value = passengersInputQuantity;
             costCalculation();
+
+
         }
 
 
@@ -144,6 +159,10 @@
 
             const grandTotalAmount = subTotal + taxTotalAmount;
             document.getElementById('grandAmount').innerText = grandTotalAmount;
+
+            document.getElementById('showTotalFirstClassPassengers').innerText = totalFirstClassPassengers;
+            document.getElementById('showTotalEconomyClassPassengers').innerText = totalEconomyClassPassengers;
+            document.getElementById('showTotalPayableAmount').innerText = grandTotalAmount;
         }
 
 
@@ -154,10 +173,13 @@
             return totalPassengers;
         }
 
-        // Show Alert Message of Payable Amount
+        // Show Acknowledgement Message
         document.getElementById('bookRequest').addEventListener('click', function () {
-            const grandTotalAmount = document.getElementById('grandAmount').innerText;
-            alert("Total Payable Amount : $" + grandTotalAmount);
+            document.getElementById('acknowledgement-section').style.display = "block";
+        })
+
+        document.getElementById('conformBooking').addEventListener('click', function () {
+            document.getElementById('acknowledgement-section').style.display = "none";
         })
     </script>
     <!--Script End-->
