@@ -116,25 +116,27 @@
 
         <!--Script Start-->
         <script>
+            // Handle Passenger Quantity in this function
             function handlePassengerChange(className, isIncrease) {
-                const passengerInput = document.getElementById(className + 'ClassInput');
-                let firstClassQuantity = parseInt(passengerInput.value);
+                const passengersInput = document.getElementById(className + 'ClassInput');
+                let passengersInputQuantity = parseInt(passengersInput.value);
                 if (isIncrease == true) {
-                    firstClassQuantity = firstClassQuantity + 1;
+                    passengersInputQuantity = passengersInputQuantity + 1;
                 }
-                if (isIncrease == false && firstClassQuantity > 0) {
-                    firstClassQuantity = firstClassQuantity - 1;
+                if (isIncrease == false && passengersInputQuantity > 0) {
+                    passengersInputQuantity = passengersInputQuantity - 1;
                 }
-                passengerInput.value = firstClassQuantity;
+                passengersInput.value = passengersInputQuantity;
                 costCalculation();
             }
 
+
+            // All Cost Calculation in this function
             function costCalculation() {
+                const totalFirstClassPassengers = passengersQuantity('first');
+                const totalEconomyClassPassengers = passengersQuantity('economy');
 
-                const totalFirstClassPassenger = passengerQuantity('first');
-                const totalEconomyClassPassenger = passengerQuantity('economy');
-
-                const subTotal = (totalFirstClassPassenger * 150) + (totalEconomyClassPassenger * 100);
+                const subTotal = (totalFirstClassPassengers * 150) + (totalEconomyClassPassengers * 100);
                 document.getElementById('subTotal').innerText = subTotal;
 
                 let taxTotalAmount = subTotal * 0.1;
@@ -142,34 +144,15 @@
 
                 const grandTotalAmount = subTotal + taxTotalAmount;
                 document.getElementById('grandAmount').innerText = grandTotalAmount;
-
             }
 
 
-            function passengerQuantity(className) {
-                const passengerInput = document.getElementById(className + 'ClassInput');
-                const totalPassenger = parseInt(passengerInput.value);
-                return totalPassenger;
+            // Passengers Input getting through this function
+            function passengersQuantity(className) {
+                const passengersInput = document.getElementById(className + 'ClassInput');
+                const totalPassengers = parseInt(passengersInput.value);
+                return totalPassengers;
             }
-
-
-
-
-
-
-            // document.getElementById('increasePassenger').addEventListener('click', function () {
-            //     const firstClassInput = document.getElementById('firstClassInput');
-            //     let firstClassQuantity = parseInt(firstClassInput.value);
-            //     firstClassQuantity = firstClassQuantity + 1;
-            //     firstClassInput.value = firstClassQuantity;
-            // })
-
-            // document.getElementById('decreasePassenger').addEventListener('click', function () {
-            //     const firstClassInput = document.getElementById('firstClassInput');
-            //     let firstClassQuantity = parseInt(firstClassInput.value);
-            //     firstClassQuantity = firstClassQuantity - 1;
-            //     firstClassInput.value = firstClassQuantity;
-            // })
         </script>
         <!--Script End-->
 </body>
