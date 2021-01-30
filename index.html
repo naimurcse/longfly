@@ -112,56 +112,55 @@
                 voluptatibus quam</p>
         </div>
         </section>
+    </main>
 
-
-        <!--Script Start-->
-        <script>
-            // Handle Passenger Quantity in this function
-            function handlePassengerChange(className, isIncrease) {
-                const passengersInput = document.getElementById(className + 'ClassInput');
-                let passengersInputQuantity = parseInt(passengersInput.value);
-                if (isIncrease == true) {
-                    passengersInputQuantity = passengersInputQuantity + 1;
-                }
-                if (isIncrease == false && passengersInputQuantity > 0) {
-                    passengersInputQuantity = passengersInputQuantity - 1;
-                }
-                passengersInput.value = passengersInputQuantity;
-                costCalculation();
+    <!--Script Start-->
+    <script>
+        // Handle Passenger Quantity in this function
+        function handlePassengerChange(className, isIncrease) {
+            const passengersInput = document.getElementById(className + 'ClassInput');
+            let passengersInputQuantity = parseInt(passengersInput.value);
+            if (isIncrease == true) {
+                passengersInputQuantity = passengersInputQuantity + 1;
             }
-
-
-            // All Cost Calculation in this function
-            function costCalculation() {
-                const totalFirstClassPassengers = passengersQuantity('first');
-                const totalEconomyClassPassengers = passengersQuantity('economy');
-
-                const subTotal = (totalFirstClassPassengers * 150) + (totalEconomyClassPassengers * 100);
-                document.getElementById('subTotal').innerText = subTotal;
-
-                let taxTotalAmount = subTotal * 0.1;
-                document.getElementById('taxAmount').innerText = taxTotalAmount;
-
-                const grandTotalAmount = subTotal + taxTotalAmount;
-                document.getElementById('grandAmount').innerText = grandTotalAmount;
+            if (isIncrease == false && passengersInputQuantity > 0) {
+                passengersInputQuantity = passengersInputQuantity - 1;
             }
+            passengersInput.value = passengersInputQuantity;
+            costCalculation();
+        }
 
 
-            // Passengers Input getting through this function
-            function passengersQuantity(className) {
-                const passengersInput = document.getElementById(className + 'ClassInput');
-                const totalPassengers = parseInt(passengersInput.value);
-                return totalPassengers;
-            }
+        // All Cost Calculation in this function
+        function costCalculation() {
+            const totalFirstClassPassengers = passengersQuantity('first');
+            const totalEconomyClassPassengers = passengersQuantity('economy');
 
-            // Show Alert Message of Payable Amount
-            document.getElementById('bookRequest').addEventListener('click', function () {
-                const grandTotalAmount = document.getElementById('grandAmount').innerText;
-                alert("Total Payable Amount : $" + grandTotalAmount);
+            const subTotal = (totalFirstClassPassengers * 150) + (totalEconomyClassPassengers * 100);
+            document.getElementById('subTotal').innerText = subTotal;
 
-            })
-        </script>
-        <!--Script End-->
+            let taxTotalAmount = subTotal * 0.1;
+            document.getElementById('taxAmount').innerText = taxTotalAmount;
+
+            const grandTotalAmount = subTotal + taxTotalAmount;
+            document.getElementById('grandAmount').innerText = grandTotalAmount;
+        }
+
+
+        // Passengers Input getting through this function
+        function passengersQuantity(className) {
+            const passengersInput = document.getElementById(className + 'ClassInput');
+            const totalPassengers = parseInt(passengersInput.value);
+            return totalPassengers;
+        }
+
+        // Show Alert Message of Payable Amount
+        document.getElementById('bookRequest').addEventListener('click', function () {
+            const grandTotalAmount = document.getElementById('grandAmount').innerText;
+            alert("Total Payable Amount : $" + grandTotalAmount);
+        })
+    </script>
+    <!--Script End-->
 </body>
 
 </html>
